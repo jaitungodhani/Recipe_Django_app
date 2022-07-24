@@ -121,6 +121,7 @@ celerybeat.pid
 # .env
 # .env.dev
 .venv
+
 env/
 venv/
 uenv/
@@ -157,3 +158,4 @@ cython_debug/
 
 .env.uat
 
+env.py
