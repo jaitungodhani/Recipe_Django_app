@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+{% load i18n %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mt-3 offset-md-2">
+            <h3>{% trans "Delete Recipe" %}</h3>
+
+            <p>{% trans 'Are you sure you want to Delete Recipe?' %}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 mt-3 offset-md-2">
+
+            <form method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Confirm Delete" class="btn btn-danger">
+	            <a href="{% url 'home' %}" class="btn btn-success btn-large btn-default">Cancel</a>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

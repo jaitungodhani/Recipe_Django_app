@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load bootstrap5 %}
+
+{% block content %}
+<div class="container mt-5 ">
+<div class="col-md-8 mt-3 offset-md-2">
+<h2 class="add-formlabel">New Recipe Form</h2>
+<form method="post" class="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="add-button">Create Recipe</button>
+    {% endbuttons %}
+</form>
+</div>
+</div>
+{% endblock content %}
