@@ -3,7 +3,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from .models import Post
 from .forms import CommentForm
-from django.views.generic import CreateView, DeleteView, UpdateView
+from django.views.generic import CreateView, DeleteView, UpdateView,ListView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -13,7 +13,7 @@ class PostList(generic.ListView):
     model = Post
     queryset = Post.objects.filter(status=1).order_by("-created_on")
     template_name = "index.html"
-    paginate_by = 8
+    paginate_by = 6
 
 
 class PostDetail(View):
@@ -105,8 +105,18 @@ class DeletePost(LoginRequiredMixin, DeleteView):
         return super().delete(*args, **kwargs)
 
 class Updatepost(LoginRequiredMixin, UpdateView):
-
     model = Post
     success_url = reverse_lazy("home")
     fields = ["title", "content", "featured_image", "excerpt", "status", "prep_time", "cook_time", "servings"]
     template_name = "recipes/postupdate.html"
+
+class filterpost(LoginRequiredMixin,ListView):
+    model = Post
+    template_name = "index.html"
+    paginate_by = 6
+
+    def get_queryset(self):
+        search=self.request.GET.get("search")
+        print(search)
+        all_obj=Post.objects.filter(title__icontains=search).all()
+        return all_obj

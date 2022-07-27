@@ -2,20 +2,19 @@
 
 {% block content %}
 
-<div class="input-group justify-content-center mt-2">
+<form class="input-group justify-content-center mt-2">
     <div class="form-outline">
-      <input id="search-input" type="search" id="form1" placeholder="Search" class="form-control" />
-      {% comment %} <label class="form-label" for="form1">Search</label> {% endcomment %}
+      <input id="search-input" type="search" name="searchbar" placeholder="Search" class="form-control" required/>
     </div>
-    <button id="search-button" type="button" class="btn dark-bg">
+    <a id="search-button" type="submit" class="btn dark-bg" href="{% url 'post_filter' %}?search={{ form.searchbar.value|default_if_none:'' }}">
       <i class="fas fa-search"></i>
-    </button>
-  </div>
+    </a>
+</form>
 <div class="container-fluid">
     <div class="row">
         {% for post in post_list %}
-        <div class="col-xl-3 col-lg-4 col-sm-6 mt-3 left">
-            <div class="card text-white bg-card">
+        <div class="col-lg-4 col-sm-6 mt-3 left">
+            <div class="card text-white shadow p-3 mb-5 bg-white rounded">
                 <div class="card-body">
                     <div class="image-container">
                         {% if "placeholder" in post.featured_image.url %}
