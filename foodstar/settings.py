@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 from django.contrib.messages import constants as messages
+
 if os.path.isfile('env.py'):
     import env
 
@@ -31,7 +32,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['recipedjango.herokuapp.com', 'localhost','127.0.0.1']
+ALLOWED_HOSTS = ['recipedjango.herokuapp.com', 'localhost','127.0.0.1','192.168.1.5']
 
 
 # Application definition

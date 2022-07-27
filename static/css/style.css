@@ -20,7 +20,7 @@ body {
 
 .add-button:hover,
 .add-button:active {
-    background-color: #E84610 !important;
+    background-color: #000000 !important;
     color: #ffffff !important;
     border-radius: 5px !important;
 }
@@ -205,4 +205,13 @@ body {
 .imgclass{
     height: 350px;
     width: 100%
+}
+
+.roundinput{
+    border-radius: 8px;
+    color: #000000;
+}
+
+.bg-card{
+    background-color: #f5f2f2;
 }
