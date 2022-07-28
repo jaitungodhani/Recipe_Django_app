@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
@@ -11,9 +12,19 @@ from django.contrib import messages
 
 class PostList(generic.ListView):
     model = Post
-    queryset = Post.objects.filter(status=1).order_by("-created_on")
     template_name = "index.html"
     paginate_by = 6
+
+    def get_queryset(self):
+        search=self.request.GET.get("search") if self.request.GET.get("search") != None else ''
+        print(search)
+        all_obj=Post.objects.filter(title__icontains=search).order_by("-created_on")
+        return all_obj
+
+    def get_context_data(self, **kwargs):
+        search=self.request.GET.get("search") if self.request.GET.get("search") != None else ''
+        kwargs["search"]=search
+        return super().get_context_data(**kwargs)
 
 
 class PostDetail(View):
@@ -116,7 +127,7 @@ class filterpost(LoginRequiredMixin,ListView):
     paginate_by = 6
 
     def get_queryset(self):
-        search=self.request.GET.get("search")
+        search=self.request.GET.get("search") if self.request.GET.get("search") != None else ''
         print(search)
-        all_obj=Post.objects.filter(title__icontains=search).all()
+        all_obj=Post.objects.filter(title__icontains=search).order_by("-created_on")
         return all_obj

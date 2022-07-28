@@ -1,15 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<form class="input-group justify-content-center mt-2">
-    <div class="form-outline">
-      <input id="search-input" type="search" name="searchbar" placeholder="Search" class="form-control" required/>
+<div class="">
+    <form class="input-group justify-content-center mt-2" method="GET" action="{% url 'home' %}">
+        <div class="form-outline">
+        <input id="search-input" type="search" name="search" placeholder="Search" class="form-control" value="{{search}}"/>
+        </div>
+        <button id="search-button" type="submit" class="btn dark-bg">
+        <i class="fas fa-search"></i>
+        </button>
+    </form>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
     </div>
-    <a id="search-button" type="submit" class="btn dark-bg" href="{% url 'post_filter' %}?search={{ form.searchbar.value|default_if_none:'' }}">
-      <i class="fas fa-search"></i>
-    </a>
-</form>
+</div>
 <div class="container-fluid">
     <div class="row">
         {% for post in post_list %}
@@ -62,10 +73,10 @@
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            <li><a href="?page={{ page_obj.previous_page_number }}&search={{search}}" class="page-link">&laquo; PREV </a></li>
             {% endif %}
             {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+            <li><a href="?page={{ page_obj.next_page_number }}&search={{search}}" class="page-link"> NEXT &raquo;</a></li>
 
             {% endif %}
         </ul>
