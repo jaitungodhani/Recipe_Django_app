@@ -1,26 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="">
-    <form class="input-group justify-content-center mt-2" method="GET" action="{% url 'home' %}">
+<div class="d-flex flex-row bd-highlight justify-content-center mb-3">
+    <form class="mt-2 inpgrp" method="GET" action="{% url 'home' %}">
         <div class="form-outline">
         <input id="search-input" type="search" name="search" placeholder="Search" class="form-control" value="{{search}}"/>
         </div>
         <button id="search-button" type="submit" class="btn dark-bg">
-        <i class="fas fa-search"></i>
+            <i class="fas fa-search"></i>
         </button>
     </form>
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown button
+    <div class="dropdown mt-2 mr-2">
+        <button class="btn btn-secondary dropdown-toggle dark-bg" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          admin
         </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="#">Select Chef</li>
+            {% for chef in all_user %}
+                <li><a class="dropdown-item" href="#">{{chef.username}}</a></li>
+            {% endfor %}
+        </ul>
     </div>
-</div>
+    </div>
 <div class="container-fluid">
     <div class="row">
         {% for post in post_list %}

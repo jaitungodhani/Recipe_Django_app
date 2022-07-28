@@ -8,7 +8,9 @@ from django.views.generic import CreateView, DeleteView, UpdateView,ListView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 
+user=get_user_model()
 
 class PostList(generic.ListView):
     model = Post
@@ -23,7 +25,9 @@ class PostList(generic.ListView):
 
     def get_context_data(self, **kwargs):
         search=self.request.GET.get("search") if self.request.GET.get("search") != None else ''
+        all_user=user.objects.all()
         kwargs["search"]=search
+        kwargs["all_user"]=all_user
         return super().get_context_data(**kwargs)
 
 
@@ -131,3 +135,5 @@ class filterpost(LoginRequiredMixin,ListView):
         print(search)
         all_obj=Post.objects.filter(title__icontains=search).order_by("-created_on")
         return all_obj
+
+

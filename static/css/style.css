@@ -214,5 +214,12 @@ body {
 
 .bg-card{
     background-color: #f5f2f2;
-    
+}
+
+.inpgrp {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin-right: 10px;
 }
