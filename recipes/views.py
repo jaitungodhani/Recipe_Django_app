@@ -19,14 +19,16 @@ class PostList(generic.ListView):
 
     def get_queryset(self):
         search=self.request.GET.get("search") if self.request.GET.get("search") != None else ''
-        print(search)
-        all_obj=Post.objects.filter(title__icontains=search).order_by("-created_on")
+        chef=self.request.GET.get("chef") if self.request.GET.get("chef") != None else ''
+        all_obj=Post.objects.filter(title__icontains=search,author__username__icontains=chef).order_by("-created_on")
         return all_obj
 
     def get_context_data(self, **kwargs):
         search=self.request.GET.get("search") if self.request.GET.get("search") != None else ''
+        chef=self.request.GET.get("chef") if self.request.GET.get("chef") != None else ''
         all_user=user.objects.all()
         kwargs["search"]=search
+        kwargs["chef"]=chef
         kwargs["all_user"]=all_user
         return super().get_context_data(**kwargs)
 

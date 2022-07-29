@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="d-flex flex-row bd-highlight justify-content-center mb-3">
-    <form class="mt-2 inpgrp" method="GET" action="{% url 'home' %}">
+<div class="d-flex flex-row bd-highlight mb-3 row">
+    <div class="col-md-6">
+    <form class="mt-2 inpgrp " method="GET" action="{% url 'home' %}">
         <div class="form-outline">
         <input id="search-input" type="search" name="search" placeholder="Search" class="form-control" value="{{search}}"/>
         </div>
@@ -10,22 +11,25 @@
             <i class="fas fa-search"></i>
         </button>
     </form>
-    <div class="dropdown mt-2 mr-2">
+</div>
+<div class="col-md-6">
+    <div class="dropdown mt-2 mr-2 dropdn">
         <button class="btn btn-secondary dropdown-toggle dark-bg" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          admin
+          {% if chef %}{{chef}}{% else %}Select Chef{% endif %}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="#">Select Chef</li>
-            {% for chef in all_user %}
-                <li><a class="dropdown-item" href="#">{{chef.username}}</a></li>
-            {% endfor %}
+            <li><a class="dropdown-item" href="{% url 'home' %}">Select Chef</li>
+            {% for chef in all_user %}<li><a class="dropdown-item" href="{% url 'home' %}?chef={{chef.username}}">{{chef.username}}</a></li>{% endfor %}
         </ul>
     </div>
-    </div>
+</div>
+</div>
+
+{% if post_list %}
 <div class="container-fluid">
-    <div class="row">
+    <div class="row rowmodify">
         {% for post in post_list %}
-        <div class="col-lg-4 col-sm-6 mt-3 left">
+        <div class="col-12 col-md-6 col-lg-4 mt-3 left">
             <div class="card text-white shadow p-3 mb-5 bg-white rounded">
                 <div class="card-body">
                     <div class="image-container">
@@ -70,14 +74,21 @@
         {% endfor %}  
     </div>
 </div>
+{% else %}
+<div class="page-center">
+    No post found
+</div>
+{% endif %}
+
+
     {% if is_paginated %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
-            <li><a href="?page={{ page_obj.previous_page_number }}&search={{search}}" class="page-link">&laquo; PREV </a></li>
+            <li><a href="?page={{ page_obj.previous_page_number }}&search={{search}}&chef={{chef}}" class="page-link">&laquo; PREV </a></li>
             {% endif %}
             {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}&search={{search}}" class="page-link"> NEXT &raquo;</a></li>
+            <li><a href="?page={{ page_obj.next_page_number }}&search={{search}}&chef={{chef}}" class="page-link"> NEXT &raquo;</a></li>
 
             {% endif %}
         </ul>

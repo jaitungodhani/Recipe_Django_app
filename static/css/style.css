@@ -12,11 +12,12 @@ body {
 .light-bg {
     background-color: #fff;
 }
+
 .add-button {
     background-color: #913a08 !important;
     color: #ffffff !important;
     border-radius: 5px !important;
-}    
+}
 
 .add-button:hover,
 .add-button:active {
@@ -24,6 +25,7 @@ body {
     color: #ffffff !important;
     border-radius: 5px !important;
 }
+
 .dark-bg {
     background-color: #913a08 !important;
 }
@@ -103,7 +105,7 @@ body {
 .boxed {
     padding-left: 5px;
     margin-top: 10px;
-    border: 1px solid black ;
+    border: 1px solid black;
 }
 
 .post-subtitle {
@@ -151,13 +153,13 @@ body {
     position: relative;
     width: 100%;
     max-width: 400px;
-  }
-  
-  .imcontainer img {
+}
+
+.imcontainer img {
     width: 100%;
-  }
-  
-  .imcontainer .btn {
+}
+
+.imcontainer .btn {
     position: absolute;
     top: 6%;
     left: 95%;
@@ -169,13 +171,13 @@ body {
     cursor: pointer;
     border-radius: 5px;
     text-align: center;
-  }
-  
-  .imcontainer .btn:hover {
-    background-color: black;
-  }
+}
 
-  .imcontainer .editbtn {
+.imcontainer .btn:hover {
+    background-color: black;
+}
+
+.imcontainer .editbtn {
     position: absolute;
     top: 6%;
     left: 88%;
@@ -187,11 +189,11 @@ body {
     cursor: pointer;
     border-radius: 5px;
     text-align: center;
-  }
-  
-  .imcontainer .editbtn:hover {
+}
+
+.imcontainer .editbtn:hover {
     background-color: black;
-  }
+}
 
 .add-formlabel {
     background-color: #913a08 !important;
@@ -200,19 +202,19 @@ body {
     padding: 10px;
     margin: 5px 0px;
     margin-bottom: 30px;
-} 
+}
 
-.imgclass{
+.imgclass {
     height: 350px;
     width: 100%
 }
 
-.roundinput{
+.roundinput {
     border-radius: 8px;
     color: #000000;
 }
 
-.bg-card{
+.bg-card {
     background-color: #f5f2f2;
 }
 
@@ -221,5 +223,28 @@ body {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
-    margin-right: 10px;
+    justify-content: end;
+}
+
+@media (max-width: 575px) {
+    .inpgrp {
+        justify-content: center;
+    }
+
+    .dropdn {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.page-center {
+    display: flex;
+    height: 75vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
