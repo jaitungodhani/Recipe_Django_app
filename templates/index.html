@@ -3,7 +3,7 @@
 {% block content %}
 <div class="d-flex flex-row bd-highlight mb-3 row">
     <div class="col-md-6">
-    <form class="mt-2 inpgrp " method="GET" action="{% url 'home' %}">
+    <form class="mt-2 inpgrp " method="GET" action="{% url 'home' %}?chef={{chef}}">
         <div class="form-outline">
         <input id="search-input" type="search" name="search" placeholder="Search" class="form-control" value="{{search}}"/>
         </div>
@@ -18,8 +18,8 @@
           {% if chef %}{{chef}}{% else %}Select Chef{% endif %}
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="{% url 'home' %}">Select Chef</li>
-            {% for chef in all_user %}<li><a class="dropdown-item" href="{% url 'home' %}?chef={{chef.username}}">{{chef.username}}</a></li>{% endfor %}
+            <li><a class="dropdown-item" href="{% url 'home' %}?search={{search}}">Select Chef</li>
+            {% for chef in all_user %}<li><a class="dropdown-item" href="{% url 'home' %}?chef={{chef.username}}&search={{search}}">{{chef.username}}</a></li>{% endfor %}
         </ul>
     </div>
 </div>
